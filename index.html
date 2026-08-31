@@ -327,15 +327,53 @@
     .nav-links{ display:none; }
     .hero .wrap{ grid-template-columns:1fr; }
     .hero-visual{ order:-1; }
-    .hero-visual img{ height:380px; }
+    
+    /* Hero en móvil: ajuste centrado */
+    .hero-visual img{ 
+      height: 380px; 
+      object-fit: cover; 
+      object-position: center center; 
+    }
     .hero-badge{ left:14px; }
     .routine-row{ flex-wrap:wrap; }
     .routine-step{ flex:0 0 50%; border-bottom:1px solid var(--line); }
-    .grid{ grid-template-columns:1fr; }
-    .card{ grid-template-columns:140px 1fr; }
-    .card.wide{ grid-column:span 1; grid-template-columns:1fr; }
-    .signature .wrap, .unbox .wrap{ grid-template-columns:1fr; }
-    .sig-visual img{ height:340px; }
+    
+    /* Productos en móvil: tarjetas verticales centrandos producto e imagen */
+    .grid{ 
+      grid-template-columns:1fr; }
+    .card{ 
+      grid-template-columns: 1fr; 
+    }
+    .card .thumb{
+      height: 280px;
+      width: 100%;
+      display: flex;
+      align-items: center; 
+      justify-content: center; 
+      overflow: hidden;
+    }
+    .card.thumb.tilt{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center; 
+      justify-content: center; 
+    }  
+    .card.thumb img,
+    .card.wide.thumb img{
+      width: 100%;
+      height:100%; 
+      object-fit: contain;
+      object-position: center center;
+      padding: 20px;
+      display: block;
+    }
+
+    .card.wide{
+      grid-column: span 1;
+      grid-template-columns: 1fr;
+    }
+.sig-visual img{ height:340px; }
     .foot-top{ flex-direction:column; }
   }
   @media (prefers-reduced-motion: reduce){
@@ -348,12 +386,12 @@
     transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1);
   }
   .reveal.in-view{ opacity:1; transform:translateY(0); }
-</style>
-</head>
-<body>
+  </style>
+  </head>
+  <body>
 
-<!-- ===== NAV ===== -->
-<header>
+  <!-- ===== NAV ===== -->
+  <header>
   <nav class="wrap">
     <a href="#top" class="brand">
       <svg class="fh" viewBox="0 0 100 100" aria-hidden="true"><path d="M30 55 C20 55 15 62 18 70 C22 80 34 86 46 86 C58 86 66 78 66 66 L66 42"/><path d="M40 42 L40 30 C40 26 46 26 46 30 L46 44"/><path d="M46 42 L46 26 C46 22 52 22 52 26 L52 44"/><path d="M52 42 L52 28 C52 24 58 24 58 28 L58 46"/><path class="heart" d="M74 24 c-3-4-9-3-9 2 c0 4 9 10 9 10 s9-6 9-10 c0-5-6-6-9-2z"/></svg>
@@ -689,6 +727,5 @@
   revealTargets.forEach(function(el){ io.observe(el); });
 })();
 </script>
-
 </body>
 </html>
